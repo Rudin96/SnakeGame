@@ -1,15 +1,17 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SnakeController : MonoBehaviour
 {
-    private int points;
+    [SerializeField] private GameObject Tail;
 
     private SnakeMovement movement;
     private List<OnKilled> onKilledSubs = new List<OnKilled>();
     private List<OnPointsChanged> onPointsChangedSubs = new List<OnPointsChanged>();
+    private LList<Transform> tail = new LList<Transform>();
+
+    private int points;
+    private bool ate = false;
 
     public int Points
     {
@@ -29,6 +31,28 @@ public class SnakeController : MonoBehaviour
     private void Start()
     {
         movement = GetComponent<SnakeMovement>();
+        movement.onMoved += OnCharacterMove;
+    }
+
+    private void OnCharacterMove(Vector3 prevpos)
+    {
+        Vector2 v = prevpos;
+
+        if(ate)
+        {
+            GameObject gameObject = Instantiate(Tail, v, Quaternion.identity);
+            tail.AddFirst(gameObject.transform);
+            ate = false;
+        }
+
+        if(tail.Count > 0)
+        {
+            tail.Last.position = v;
+
+            Transform t = tail.Last;
+            tail.Remove(tail.Last);
+            tail.AddFirst(t);
+        }
     }
 
     private void Update()
@@ -64,6 +88,7 @@ public class SnakeController : MonoBehaviour
     public void AddPoints(int pointsToAdd)
     {
         Points += pointsToAdd;
+        ate = true;
     }
 
     public void OnCollisionEnter2D(Collision2D collision)

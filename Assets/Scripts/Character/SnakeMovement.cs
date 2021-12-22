@@ -15,6 +15,8 @@ public class SnakeMovement : MonoBehaviour
     public float MovementSpeed = 1f;
     public Direction Direction = Direction.Up;
 
+    private List<OnMoved> onMovedSubs = new List<OnMoved>();
+
     private void Start()
     {
         StartCoroutine(Move());
@@ -24,7 +26,9 @@ public class SnakeMovement : MonoBehaviour
     {
         while (true)
         {
+            Vector3 prev = transform.position;
             transform.position = transform.position + (Vector3)CalculateDir();
+            onMovedSubs.ForEach(e => e(prev));
             yield return new WaitForSecondsRealtime(MovementSpeed);
         }
     }
@@ -45,6 +49,15 @@ public class SnakeMovement : MonoBehaviour
                 return Vector2.zero;
         }
     }
+
+    public delegate void OnMoved(Vector3 prevpos);
+
+    public event OnMoved onMoved
+    {
+        add => onMovedSubs.Add(value);
+        remove => onMovedSubs.Remove(value);
+    }
+
 
     public void SetMovementSpeed(float newMovementSpeed)
     {

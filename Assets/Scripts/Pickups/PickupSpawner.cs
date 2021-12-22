@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class PickupSpawner : MonoBehaviour
 {
-    [SerializeField] public List<Pickup> PickupsToSpawn;
-    [SerializeField] public List<Wall> Walls;
+    [SerializeField] private List<Pickup> PickupsToSpawn;
+    [SerializeField] private List<Wall> Walls;
+
+    private SnakeController snakeController;
+
+    private Coroutine spawnRoutine;
 
     public float SpawnTimer = 2f;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Spawn());
+        spawnRoutine = StartCoroutine(Spawn());
+        snakeController = GameObject.FindGameObjectWithTag("Player")?.GetComponent<SnakeController>();
+        snakeController.onKilled += SnakeController_onKilled;
+    }
+
+    private void SnakeController_onKilled()
+    {
+        StopCoroutine(spawnRoutine);
     }
 
     private Vector3 GetRandomLocationWithinWalls()

@@ -23,6 +23,7 @@ public class LList<T> : IEnumerable<T>
         }
         LListNode<T> lastNode = GetLastNode();
         lastNode.NextItem = node;
+        count++;
     }
 
     public void AddFirst(T data)
@@ -68,7 +69,7 @@ public class LList<T> : IEnumerable<T>
         count++;
     }
 
-    private LListNode<T> GetLastNode()
+    public LListNode<T> GetLastNode()
     {
         LListNode<T> nextNode = head;
         while (nextNode.NextItem != null)
@@ -83,6 +84,8 @@ public class LList<T> : IEnumerable<T>
         items = new T[count];
         int counter = 0;
         LListNode<T> nextNode = head;
+        if(nextNode == null) return;
+
         if (nextNode.NextItem == null)
         {
             items[counter] = nextNode.Value;
