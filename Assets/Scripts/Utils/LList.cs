@@ -10,7 +10,7 @@ public class LList<T> : IEnumerable<T>
 
     private int count;
     public int Count { get => count; }
-    public T Tail => GetLastNode().Value;
+    public T Last => GetLastNode().Value;
 
     public void AddLast(T data)
     {

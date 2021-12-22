@@ -1,17 +1,38 @@
+using System;
 using UnityEngine;
 
-public static class ScoreManager
+public class ScoreManager
 {
+    private static string scoreString = "HighScore";
+
+    private ScoreManager()
+    {
+
+    }
+
+    public static ScoreManager Instance { get; } = new ScoreManager();
+
     /// <summary>
     /// Saves highscore to playerprefs and returns true if previous score was beaten, otherwise false
     /// </summary>
     /// <param name="points"></param>
     /// <returns></returns>
-    public static bool SaveHighScore(int points)
+    public bool SaveHighScore(int points)
     {
-        int prevScore = PlayerPrefs.GetInt("HighScore");
+        int prevScore = GetHighScore();
         int newScore = points;
-        PlayerPrefs.SetInt("HighScore", newScore);
-        return newScore > prevScore;
+        if(newScore > prevScore)
+        {
+            PlayerPrefs.SetInt(scoreString, newScore);
+            return true;
+        } else { return false; }
+    }
+
+    public int GetHighScore()
+    {
+        if (PlayerPrefs.HasKey(scoreString))
+            return PlayerPrefs.GetInt(scoreString);
+        else
+            return 0;
     }
 }

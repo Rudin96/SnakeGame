@@ -28,11 +28,13 @@ public class Pickup : MonoBehaviour
                 break;
             case PickupType.Speed:
                 SnakeMovement snakeMovement = collision.gameObject?.GetComponent<SnakeMovement>();
-                snakeMovement.SetMovementSpeed(snakeMovement.MovementSpeed * MovementSpeedModifier);
+                snakeMovement.SetMovementSpeed(snakeMovement.MovementSpeed / (1 * MovementSpeedModifier));
+                Destroy(this.gameObject);
                 break;
             case PickupType.Points:
                 SnakeController snakeController = collision.gameObject?.GetComponent<SnakeController>();
                 snakeController.AddPoints(PointsToAdd);
+                Destroy(this.gameObject);
                 break;
         }
     }

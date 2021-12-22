@@ -51,9 +51,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3199065438488935963, guid: fc37a6aa5f6b9a048a5f95f27d2a0f49, type: 3}
+      propertyPath: m_Color.b
+      value: 0.0047169924
+      objectReference: {fileID: 0}
+    - target: {fileID: 3199065438488935963, guid: fc37a6aa5f6b9a048a5f95f27d2a0f49, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3199065438488935963, guid: fc37a6aa5f6b9a048a5f95f27d2a0f49, type: 3}
+      propertyPath: m_Color.r
+      value: 0.07628865
+      objectReference: {fileID: 0}
     - target: {fileID: 3199065438488935964, guid: fc37a6aa5f6b9a048a5f95f27d2a0f49, type: 3}
       propertyPath: m_Name
-      value: Pickup
+      value: MovementPickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 3199065438488935965, guid: fc37a6aa5f6b9a048a5f95f27d2a0f49, type: 3}
+      propertyPath: Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3199065438488935965, guid: fc37a6aa5f6b9a048a5f95f27d2a0f49, type: 3}
+      propertyPath: MovementSpeedModifier
+      value: 1.15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc37a6aa5f6b9a048a5f95f27d2a0f49, type: 3}

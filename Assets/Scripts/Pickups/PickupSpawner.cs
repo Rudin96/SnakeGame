@@ -17,7 +17,7 @@ public class PickupSpawner : MonoBehaviour
 
     private Vector3 GetRandomLocationWithinWalls()
     {
-        return new Vector3(Random.Range(Walls[0].transform.position.x, Walls[1].transform.position.x), Random.Range(Walls[1].transform.position.y, Walls[3].transform.position.y));
+        return new Vector3((int)Random.Range(Walls[2].transform.position.x, Walls[3].transform.position.x), (int)Random.Range(Walls[0].transform.position.y, Walls[1].transform.position.y));
     }
 
     private IEnumerator Spawn()

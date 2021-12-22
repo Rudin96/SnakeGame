@@ -28,7 +28,10 @@ public class Wall : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision == null) return;
-        SnakeController snake = collision.gameObject?.GetComponent<SnakeController>();
-        snake.Kill();
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            SnakeController snake = collision.gameObject.GetComponent<SnakeController>();
+            snake.Kill();
+        }
     }
 }
