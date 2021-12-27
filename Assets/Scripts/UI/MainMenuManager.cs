@@ -52,6 +52,7 @@ public class MainMenuManager : MonoBehaviour
 
     void InitGraphicsSettings()
     {
+        Settings.InitSettings();
         resolutions = Screen.resolutions.ToList();
         List<Dropdown.OptionData> resOptions = new List<Dropdown.OptionData>();
         resolutions.ForEach(resolution => resOptions.Add(new Dropdown.OptionData(resolution.ToString())));
@@ -59,12 +60,11 @@ public class MainMenuManager : MonoBehaviour
         resDropdown.value = resOptions.FindIndex(r => r.text.Contains($"{Settings.ResX} x {Settings.ResY}"));
         qualityDropdown.value = Settings.GetSettings().GraphicsQuality;
         fullscreenToggle.isOn = Settings.FullScreen;
-        Settings.InitSettings();
     }
 
     void StartGame()
     {
-        SceneManager.LoadScene(0, LoadSceneMode.Single);
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 
     void ShowOptionsMenu()
