@@ -1,14 +1,15 @@
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class ScoreManager
 {
-    private static string scoreString = "HighScore";
-
     private ScoreManager()
     {
 
     }
+
+    private async Task<bool> isNewHighScore(int score) => score >= await GetHighScore();
 
     public static ScoreManager Instance { get; } = new ScoreManager();
 
@@ -17,22 +18,18 @@ public class ScoreManager
     /// </summary>
     /// <param name="points"></param>
     /// <returns></returns>
-    public bool SaveHighScore(int points)
+    public async Task<bool> SaveHighScoreAsync(int points)
     {
-        int prevScore = GetHighScore();
         int newScore = points;
-        if(newScore > prevScore)
+        if(await isNewHighScore(points))
         {
-            PlayerPrefs.SetInt(scoreString, newScore);
+            await DataManager.Instance.PostScoreDataAsync(newScore);
             return true;
         } else { return false; }
     }
 
-    public int GetHighScore()
+    public async Task<int> GetHighScore()
     {
-        if (PlayerPrefs.HasKey(scoreString))
-            return PlayerPrefs.GetInt(scoreString);
-        else
-            return 0;
+        return await DataManager.Instance.GetScoreDataAsync();
     }
 }

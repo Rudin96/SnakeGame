@@ -40,10 +40,9 @@ public class UIManager : MonoBehaviour
         pointsText.text = $"Points: {nextValue}";
     }
 
-    void EnableDeathUI()
+    async void EnableDeathUI()
     {
-        highScoreText.text = $"High Score: {ScoreManager.Instance.GetHighScore()}";
-
+        highScoreText.text = $"Current High Score: {await ScoreManager.Instance.GetHighScore()}";
         highScoreText.gameObject.SetActive(true);
         deathText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);

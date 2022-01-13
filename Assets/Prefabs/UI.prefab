@@ -717,7 +717,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -6, y: 81}
-  m_SizeDelta: {x: 430.1, y: 57}
+  m_SizeDelta: {x: 563.1, y: 57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7869356630191120166
 CanvasRenderer:
@@ -760,7 +760,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'High Score: ####'
+  m_Text: 'Current High Score: ####'
 --- !u!1 &7146660665987976518
 GameObject:
   m_ObjectHideFlags: 0

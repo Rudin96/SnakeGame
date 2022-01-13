@@ -97,9 +97,9 @@ public class SnakeController : MonoBehaviour
             Kill();
     }
 
-    public void Kill()
+    public async void Kill()
     {
-        ScoreManager.Instance.SaveHighScore(Points);
+        await ScoreManager.Instance.SaveHighScoreAsync(Points);
         onKilledSubs.ForEach(s => s());
         Destroy(this.gameObject);
     }
